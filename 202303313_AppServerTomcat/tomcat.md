@@ -264,11 +264,64 @@ $ aws ec2 run-instances \
 </tomcat-users>
 ```
 
-```
-# vi /opt/tomcat/webapps/host-manager/META-INF/context.xml 
+
+#### vi /opt/tomcat/webapps/manager/META-INF/context.xml 
+
+    Open the context.xml file for the manager web application located in the $CATALINA_BASE/webapps/manager/META-INF directory. 
+    
+    Replace $CATALINA_BASE with the actual path of your Tomcat installation.
+
+    Add the following lines within the <Context> element:
+
+    vi /opt/tomcat/webapps/manager/META-INF/context.xml 
+
+    ```
+    <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+       allow="[IP address of the remote machine]"/>
+
+    ```
+
+    - Replace [IP address of the remote machine] with the IP address of the remote machine that you want to grant access to. 
+    - To grant access to all machines, use the following value for the allow attribute:
 
 
-# vi /opt/tomcat/webapps/manager/META-INF/context.xml 
+    ```
+    allow="^.*$"
+    ```    
+
+    ```
+    <!-- Example -->
+    <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+       allow="^.*$"/>
+
+    ```
+
+#### vi /opt/tomcat/webapps/host-manager/META-INF/context.xml 
+
+    Open the context.xml file for the manager web application located in the $CATALINA_BASE/webapps/manager/META-INF directory. 
+    
+    Replace $CATALINA_BASE with the actual path of your Tomcat installation.
+
+    Add the following lines within the <Context> element:
+
+    vi /opt/tomcat/webapps/host-manager/META-INF/context.xml 
+
+    ```
+    <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+       allow="[IP address of the remote machine]"/>
+
+    ```
+
+    - Replace [IP address of the remote machine] with the IP address of the remote machine that you want to grant access to. 
+    - To grant access to all machines, use the following value for the allow attribute:
 
 
-```
+    ```
+    allow="^.*$"
+    ```    
+
+    ```
+    <!-- Example -->
+    <Valve className="org.apache.catalina.valves.RemoteAddrValve"
+       allow="^.*$"/>
+
